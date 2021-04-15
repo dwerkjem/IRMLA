@@ -8,11 +8,14 @@ from PIL import ImageTk, Image
 from tkinter import *
 from tkinter import filedialog
 
+global pics
+
 
 # definitions
 def openFile():
-    Tpngs: object = filedialog.askopenfilename()
-    print(Tpngs)
+    pics = filedialog.askopenfilename()
+
+    print(pics)
 
 
 # things to do
@@ -20,15 +23,18 @@ def openFile():
 # loop over pictures in file name
 # data base SQL lite
 
-img = cv2.imread('Tpngs', 1)
-
 (program_name) = "Image Recognition Machine Learning Algorithm"
 (defwinsize) = "450x450"
-TitleOfOFD = "select PNGs for processing"
+TitleOfOFD = "select pictures for processing"
+
 win = tk.Tk()
 button = Button(text=TitleOfOFD, command=openFile)
+canvas = Canvas(win, width=300, height=300)
+canvas.create_image(200, 200, anchor=NW, image=pics)
+button.pack()
+canvas.pack()
 
 win.title(program_name)
 win.geometry(defwinsize)
-button.pack()
+
 win.mainloop()
